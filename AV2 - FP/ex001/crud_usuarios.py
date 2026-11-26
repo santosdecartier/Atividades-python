@@ -82,5 +82,29 @@ def deletar_contato ():
         print("Contato deletado.")
     except OSError:
         print("Erro ao salvar o arquivo.")
+     
+def menu():
+    while True:
+        print("\n1 - Criar")
+        print("2 - Listar")
+        print("3 - Atualizar")
+        print("4 - Deletar")
+        print("0 - Sair")
+        opcao = input("Escolha: ")
 
+        if opcao == "1":
+            criar_contato()
+        elif opcao == "2":
+            listar_contatos()
+        elif opcao == "3":
+            atualizar_contato()
+        elif opcao == "4":
+            deletar_contato()
+        elif opcao == "0":
+            print("Até logo!")
+            break
+        else:
+            print("Opção inválida.")
+
+menu()
 
