@@ -54,4 +54,33 @@ def atualizar_contato (): #função base do "Update" do crud
      except OSError:
          print("Erro ao salvar o arquivo.")
 
+def deletar_contato ():
+    nome_busca = input("Contato que deseja deletar: ")
+    try:
+        with open(ARQUIVO, 'r', encoding="utf-8") as arquivo:
+            linhas_lidas = arquivo.readlines()
+    except FileNotFoundError:
+        print("Nenhum contato foi cadastrado.")
+        return
+
+    novas_linhas = [] #vai criar novas linhas com os contatos que ficam
+    encontrado = False
+    for linha in linhas_lidas:
+        partes = linha.strip().split(";")
+        if partes[0] == nome_busca:
+            encontrou = True
+        else:
+            novas_linhas.append(linha)
+
+    if not encontrou:
+        print("Contato não encontrado.")
+        return
+
+    try:
+        with open("contatos.txt", "w", encoding="utf-8") as arquivo:
+            arquivo.writelines(novas_linhas)
+        print("Contato deletado.")
+    except OSError:
+        print("Erro ao salvar o arquivo.")
+
 
